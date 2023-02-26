@@ -165,7 +165,24 @@ exports.getLocationOfOutlets = async (req, res, next) => {
 
 exports.removeUserFromOutlet = async (req, res, next) => {
   try {
-  } catch (err) {}
+    const { outletName } = req.body;
+
+    const outlet = await Outlet.findOne({ name: outletName });
+
+    // Find the index of the element to remove
+    let indexToRemove = myArray.indexOf(req.params.id);
+
+    // Use the splice() method to remove the element
+    if (indexToRemove > -1) {
+      outlet.splice(indexToRemove, 1);
+    }
+    await outlet.save();
+  } catch (err) {
+    res.status(404).json({
+      status: 'failed',
+      message: err.message,
+    });
+  }
 };
 
 exports.sendSOS = async (req, res, next) => {
