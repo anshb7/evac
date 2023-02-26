@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:string_validator/string_validator.dart';
-import 'package:evac/lib/main.dart';
+// import 'package:provider/provider.dart';
+// import 'package:string_validator/string_validator.dart';
+// import 'package:evac/lib/main.dart';
 
 class UserData extends StatefulWidget {
   const UserData({super.key});
@@ -10,8 +10,7 @@ class UserData extends StatefulWidget {
   State<UserData> createState() => _UserDataState();
 }
 
-// class _UserDataState extends State<UserData> {
-//   final user = FirebaseAuth.instance.currentUser;
+class _UserDataState extends State<UserData> {
 
   final formkey = GlobalKey<FormState>();
   String name = "";
@@ -22,6 +21,19 @@ class UserData extends StatefulWidget {
 
   // CollectionReference Users =
   //     FirebaseFirestore.instance.collection("Users");
+bool isInt(String str) {
+  try {
+    int.parse(str);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+bool isAlpha(String str) {
+  return RegExp(r'^[a-zA-Z]+$').hasMatch(str);
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -128,13 +140,14 @@ class UserData extends StatefulWidget {
                           autocorrect: true,
                           decoration: InputDecoration(
                               labelStyle: TextStyle(fontFamily: "Product Sans"),
-                              labelText: "Enter Phone number of your emergency contact?",
+                              prefixText: "+91",
+                              labelText: "Give your Emergency contact",
                               border: OutlineInputBorder(
-                                  gapPadding: 2,
                                   borderRadius: BorderRadius.circular(20))),
                           textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.phone,
                           validator: (value) {
-                            if (isInt(value.toString())) {
+                            if (isAlpha(value.toString())) {
                               return "Invalid Input";
                             } else if (value?.isEmpty == true) {
                               return "Input can't be null";
@@ -199,13 +212,13 @@ class UserData extends StatefulWidget {
                           textInputAction: TextInputAction.next,
                           validator: (value) {
                             if (value != null && value.isEmpty) {
-                            return 'Conform password is required please enter';
+                            return 'Kindly re-enter your password';
                             }
                              else if (value?.isEmpty == true) {
                               return "Input can't be null";
                             }
                             if(value != password){
-              return 'Confirm password not matching';
+              return 'The passwords do not match';
             }
                           return null;
                           },
@@ -225,7 +238,7 @@ class UserData extends StatefulWidget {
                             if (isValid!) {
                               formkey.currentState?.save();
                               try {
-                                createuser();
+                                // createuser();
                                 final snackbar = SnackBar(
                                   content: Text(
                                     "Successfully Added!",
@@ -235,11 +248,13 @@ class UserData extends StatefulWidget {
                                 );
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(snackbar);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            UserDashboard())));
+                                // Navigator.push(
+                                    // context
+                                    // ,
+                                    // MaterialPageRoute(
+                                    //     builder: ((context) =>
+                                    //         UserDashboard())) 
+                                    // );
                               } catch (e) {
                                 print(e);
                               }
@@ -269,14 +284,14 @@ class UserData extends StatefulWidget {
     );
   }
 
-  Future createuser() async {
-    final User = UserInfo(
-        name: name,
-        phNo: phoneNo,
-        emergencyPhone: emergencyPhone,
-        password: password,
-        confirmPassword: confirmPassword);
-    final json = User.toJson();
-    return Users.doc(user!.uid.toString()).set(json);
-  }
+  // Future createuser() async {
+  //   final User = UserInfo(
+  //       name: name,
+  //       phNo: phoneNo,
+  //       emergencyPhone: emergencyPhone,
+  //       password: password,
+  //       confirmPassword: confirmPassword);
+  //   final json = User.toJson();
+  //   return Users.doc(user!.uid.toString()).set(json);
+  // }
 }

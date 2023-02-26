@@ -1,5 +1,7 @@
 import 'package:evac/bottomnavbar.dart';
+import 'package:evac/loginpage.dart';
 import 'package:evac/map.dart';
+import 'package:evac/otppage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => MyHomePage(),
+        // '/': (context) => MyHomePage(),
         // '/map':(context)=> MapPage()
       },
       debugShowCheckedModeBanner: false,
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(),
+      home: OTPScreen("1"),
     );
   }
 }
