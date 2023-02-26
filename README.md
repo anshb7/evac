@@ -12,22 +12,22 @@ EVAC is a full-stack soltuion to reduce reaction time drastically in the face of
 ## How it works
 There are two sides to the app i.e the User end and the Admin end</br>
 
-User end:</br>
+### User end:</br>
 After quickly registering on the app, Whenever a user steps out of their home and enters an outlet, the app will first ask for a confirmation. Following this, the backend will be updated with the users' details and their current GPS pin. Now, As a person reaches a safe space or exits the n-meter radius of the establishment, the live count will be updated accordingly. Further, if any person is stuck/injured, they can communicate directly with the authorities through the SOS functionality.
 
-Admin end:</br>
+### Admin end:</br>
 The concerned authority of outlet will have to register themselves into the application previously with parameters like radius, working hours, etc. Following this, their establishment will be available on the map. Whenever a person/employee walks into the n-metre ratius of the outlet, the counter will be updated on the backend-only visible to a set of authorised people. Now, as a calamity strikes - the authorized personnel will have the option to declare it through the SOS button on the admin panel which will send a notification to all the users inside the premises. Subsequently, the live counter will be shared with government rescue agencies, and the authorities will have access to the locations of those still inside their premises. 
 
 
 
 ## The User Interface
-![](assets/UI.png)
+![](assets/images/UI.png)
 
 ## Flowchart
 Here's a quick look over the flow of the application
 
 Here's a peek: </br>
-![](assets/FlowChart.jpg)
+![](assets/images/FlowChart.jpg)
 
 ## Tech Stack
 <p float="left">
