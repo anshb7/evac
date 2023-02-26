@@ -1,10 +1,11 @@
 const express = require("express");
 const { createServer } = require("http");
+const mongoose = require('mongoose');
 const { Server } = require("socket.io");
 const { initializeRoutes } = require("./routes/index");
 const  Outlet  = require('../REST-server/models/outletModel');
 const  User  = require('../REST-server/models/userModel');
-
+const dotenv = require('dotenv');
 let app = express();
 app = initializeRoutes(app);
 app.get("/", (req, res) => {
@@ -30,6 +31,30 @@ const io = new Server(httpServer, {
 httpServer.listen(port, () => {
   console.log(`evac app listening on port ${port}`);
 });
+
+// Connect to MongoDB using Mongoose
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB using Mongoose');
+  
+// Set up the MongoDB change stream
+const changeStream = User.watch({ $match: { 'operationType': 'update' } });
+
+// Listen for changes on the User collection
+changeStream.on('change', (change) => {
+  console.log('Change detected:', change);
+
+  // Get the count parameter from the updated document
+  const count = change.fullDocument.count;
+
+  // Send the count to all connected Socket.io clients
+  io.emit('count', count);
+});
+});
+
+
 
 
 const id=  Outlet.findOne({},'_id', function(err, result) {
