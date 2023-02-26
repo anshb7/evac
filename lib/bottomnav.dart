@@ -1,16 +1,22 @@
+import 'package:evac/admin.dart';
+import 'package:evac/adminemer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-class bottomnavbar extends StatefulWidget {
-  const bottomnavbar({super.key});
+class bottomnavbar1 extends StatefulWidget {
+  final selectedIndex;
+
+  const bottomnavbar1({super.key, this.selectedIndex});
 
   @override
-  State<bottomnavbar> createState() => _bottomnavbarState();
+  State<bottomnavbar1> createState() => _bottomnavbar1State();
 }
 
-class _bottomnavbarState extends State<bottomnavbar> {
+class _bottomnavbar1State extends State<bottomnavbar1> {
+  var screens = [Admin(), emergencyadmin()];
+
   int ind = 0;
   @override
   Widget build(BuildContext context) {
