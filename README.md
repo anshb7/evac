@@ -7,7 +7,7 @@ EVAC is a full-stack soltuion to reduce reaction time drastically in the face of
 
 </br>
 
-<img src="assets/icon/evac_logo.png" width="300" height="300">
+<img src="assets/iamges/logo.png" width="300" height="300">
 
 ## How it works
 There are two sides to the app i.e the User end and the Admin end</br>
