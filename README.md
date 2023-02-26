@@ -18,8 +18,6 @@ After quickly registering on the app, Whenever a user steps out of their home an
 ### Admin end:</br>
 The concerned authority of outlet will have to register themselves into the application previously with parameters like radius, working hours, etc. Following this, their establishment will be available on the map. Whenever a person/employee walks into the n-metre ratius of the outlet, the counter will be updated on the backend-only visible to a set of authorised people. Now, as a calamity strikes - the authorized personnel will have the option to declare it through the SOS button on the admin panel which will send a notification to all the users inside the premises. Subsequently, the live counter will be shared with government rescue agencies, and the authorities will have access to the locations of those still inside their premises. 
 
-
-
 ## The User Interface
 ![](assets/images/UI.png)
 
@@ -29,11 +27,13 @@ Here's a quick look over the flow of the application
 Here's a peek: </br>
 ![](assets/images/FlowChart.jpg)
 
-## Tech Stack
-<p float="left">
-  <img src="images/flutterlogo.png" width="100" height="100" />
-  <img src="images/dart_logo.png" width="100" height "100" />
-</p>
+## The team 
+[Ansh Bajaj](https://github.com/anshb7) </br>,
+[Aditya Parmar](https://github.com/Balerion123) </br>,
+[Garv Chandalia](https://github.com/grc-04),</br>
+[Vivaan Taneja](https://https://github.com/vivaantaneja)</br>
+[Sanya Mahajan](https://https://github.com/sanya_mahajan)
+
 
 ## Getting Started
 
