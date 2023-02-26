@@ -99,7 +99,7 @@ exports.addUserToOutlet = async (req, res, next) => {
       outlet.location.coordinates[1],
       currentLocation[0],
       currentLocation[1]
-    ) > outlet.radius
+    ) <= outlet.radius
   ) {
     // ADD USER TO LIST OF PEOPLE PRESENT IN THE OUTLET
     outlet.peoplePresent.push(req.params.id);
@@ -188,3 +188,19 @@ exports.sendSOS = async (req, res, next) => {
     });
   }
 };
+
+exports.getAllOutlets = async (req, res, next) => {
+  try {
+    const outlets = await Outlet.find();
+
+    res.status(200).json({
+      status: 'success',
+      data: outlets,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'failed',
+      message: err.message,
+    });
+  }
+}
