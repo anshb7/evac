@@ -6,7 +6,9 @@ const { initializeRoutes } = require("./routes/index");
 const  Outlet  = require('../REST Server/models/outletModel');
 const  User  = require('../REST Server/models/userModel');
 const dotenv = require('dotenv');
-let app = express();
+
+mongoose.set('strictQuery', true);
+let app = express();mongoose.set('strictQuery', true);
 app = initializeRoutes(app);
 app.get("/", (req, res) => {
   res.status(200).send({
@@ -33,7 +35,9 @@ httpServer.listen(port, () => {
 });
 
 // Connect to MongoDB using Mongoose
-mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://adityaparmar:PVGtxnovwPjOqmaj@cluster-evac.xggkhjh.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => {
@@ -79,6 +83,7 @@ const id=  Outlet.findOne({},'_id', function(err, result) {
       //add person from list of people present in outlet
       let addedUser= User.findById(io.sockets.sockets.id)
       record.peoplePresent.push(addedUser);
+      io.emit(addedUser.location, "joined");
        
       record.save((err) => {
         if (err) {
@@ -86,6 +91,7 @@ const id=  Outlet.findOne({},'_id', function(err, result) {
           return;
         }
         console.log('headcount updated !');
+       
       });
     });
 
@@ -110,6 +116,7 @@ const id=  Outlet.findOne({},'_id', function(err, result) {
         //remove person from list of people present in outlet
       let removedUser= User.findById(io.sockets.sockets.id)
       record.peoplePresent.pull(removedUser);
+      io.emit(removedUser.location, "left");
 
          
         record.save((err) => {
