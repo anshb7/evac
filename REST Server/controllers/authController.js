@@ -34,7 +34,13 @@ const createSendToken = (user, statusCode, res) => {
 // ROUTE TO SIGN UP AS USER
 exports.signup = async (req, res, next) => {
   try {
-    const { name, phoneNumber, password, passwordConfirmation } = req.body;
+    const {
+      name,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      emergencyContact,
+    } = req.body;
     if (password !== passwordConfirmation) {
       res.status(400).json({
         status: 'failed',
@@ -45,7 +51,12 @@ exports.signup = async (req, res, next) => {
     const newUser = await User.create({
       name,
       phoneNumber,
+      emergencyContact,
       password,
+      location: {
+        type: 'Point',
+        coordinates: [76.35985311823566, 30.354609639779458],
+      },
     });
 
     createSendToken(newUser, 201, res);
