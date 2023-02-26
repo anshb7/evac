@@ -164,7 +164,7 @@ class _adminpanelState extends State<adminpanel> {
                         borderWidth: 1,
                         palette: [Colors.blue, Colors.red],
                         title: ChartTitle(
-                            text: ' Total People : 478',
+                            text: ' Total People : 3',
                             textStyle: TextStyle(
                                 fontSize: 20,
                                 fontFamily: "Product",
@@ -238,7 +238,14 @@ class _adminpanelState extends State<adminpanel> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
                   backgroundColor: Color.fromRGBO(255, 255, 255, 1)),
-              onPressed: () {},
+              onPressed: () => showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                        title: const Text(
+                          'Sent to Authorities!',
+                          style: TextStyle(fontFamily: "Product"),
+                        ),
+                      )),
               child: Text("Send Information to Authorities",
                   style: TextStyle(
                       color: Color.fromRGBO(51, 56, 76, 1),

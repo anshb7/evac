@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:math';
 import 'package:evac/position.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart' as latLng;
 
 import 'package:flutter_map/flutter_map.dart';
@@ -17,6 +19,12 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   @override
+  void initState() {
+    _postdata();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: FlutterMap(
@@ -25,12 +33,6 @@ class _MapPageState extends State<MapPage> {
               double.parse('${widget.position.long}')),
           zoom: 12,
         ),
-        nonRotatedChildren: [
-          AttributionWidget.defaultWidget(
-            source: 'OpenStreetMap contributors',
-            onSourceTapped: null,
-          ),
-        ],
         children: [
           TileLayer(
             tileSize: 256,
@@ -75,7 +77,7 @@ class _MapPageState extends State<MapPage> {
                 ),
               ),
               Marker(
-                point: latLng.LatLng(30.364326286196157, 76.40316922197903),
+                point: latLng.LatLng(30.354409639789458, 76.35935311823566),
                 width: 80,
                 height: 80,
                 builder: (context) => GestureDetector(
@@ -105,7 +107,7 @@ class _MapPageState extends State<MapPage> {
                 ),
               ),
               Marker(
-                point: latLng.LatLng(30.36168333263183, 76.37268300637672),
+                point: latLng.LatLng(30.358609639779458, 76.35585311823566),
                 width: 80,
                 height: 80,
                 builder: (context) => GestureDetector(
@@ -113,7 +115,7 @@ class _MapPageState extends State<MapPage> {
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
                             title: const Text(
-                              'Romatini',
+                              'M-Hostel',
                               style: TextStyle(fontFamily: "Product"),
                             ),
                             actions: <Widget>[
@@ -135,7 +137,7 @@ class _MapPageState extends State<MapPage> {
                 ),
               ),
               Marker(
-                point: latLng.LatLng(30.361535214179476, 76.37285466775579),
+                point: latLng.LatLng(30.354709639779458, 76.35975311823566),
                 width: 80,
                 height: 80,
                 builder: (context) => GestureDetector(
@@ -143,7 +145,7 @@ class _MapPageState extends State<MapPage> {
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
                             title: const Text(
-                              'Romatini',
+                              'M-Hostel',
                               style: TextStyle(fontFamily: "Product"),
                             ),
                             actions: <Widget>[
@@ -169,5 +171,21 @@ class _MapPageState extends State<MapPage> {
         ],
       ),
     );
+  }
+
+  Future<void> _postdata() async {
+    final url =
+        Uri.parse('https://127.0.0.1:8000/api/v1/users/getLocationOfOutlets');
+    final response = await http.post(url,
+        body: jsonEncode({
+          "currentLocation": {
+            "longitude": 76.35985311823566,
+            "latitude": 30.354609639779458
+          }
+        }));
+    if (response.statusCode == 200) {
+      final responsedata = jsonDecode(response.body);
+      print(responsedata.toString());
+    }
   }
 }

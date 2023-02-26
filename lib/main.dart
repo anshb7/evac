@@ -2,7 +2,9 @@ import 'package:evac/admin.dart';
 import 'package:evac/adminemer.dart';
 import 'package:evac/bottomnavbar.dart';
 import 'package:evac/loadingscreen.dart';
+import 'package:evac/loginpage.dart';
 import 'package:evac/map.dart';
+import 'package:evac/otpscreen.dart';
 import 'package:evac/position.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -21,12 +23,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/user': (context) => MyHomePage(),
+        '/admin': (context) => Admin(),
+        '/otpscreen': (context) => OTPScreen("")
+      },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(primary: Color.fromRGBO(235, 45, 45, 1)),
       ),
-      home: const Admin(),
+      home: const UserData(),
     );
   }
 }

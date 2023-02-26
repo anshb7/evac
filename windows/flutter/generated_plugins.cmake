@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   geolocator_windows
   modal_progress_hud_nsn
+  smart_auth
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
