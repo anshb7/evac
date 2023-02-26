@@ -163,6 +163,11 @@ exports.getLocationOfOutlets = async (req, res, next) => {
   }
 };
 
+exports.removeUserFromOutlet = async (req, res, next) => {
+  try {
+  } catch (err) {}
+};
+
 exports.sendSOS = async (req, res, next) => {
   try {
     const { outletName, message } = req.body;
@@ -203,4 +208,4 @@ exports.getAllOutlets = async (req, res, next) => {
       message: err.message,
     });
   }
-}
+};

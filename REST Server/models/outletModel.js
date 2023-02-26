@@ -5,6 +5,7 @@ const outletSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'A user must have a name'],
+    unique: true,
   },
   location: {
     type: {
@@ -64,7 +65,6 @@ const outletSchema = new mongoose.Schema({
       user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true,
       },
       message: {
         type: String,

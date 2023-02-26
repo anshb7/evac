@@ -1,6 +1,7 @@
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
+const Outlet = require('../models/outletModel');
 
 // CREATE SIGN TOKEN
 const signToken = (id) => {
@@ -40,6 +41,7 @@ exports.signup = async (req, res, next) => {
       password,
       passwordConfirmation,
       emergencyContact,
+      location,
     } = req.body;
     if (password !== passwordConfirmation) {
       res.status(400).json({
@@ -53,13 +55,37 @@ exports.signup = async (req, res, next) => {
       phoneNumber,
       emergencyContact,
       password,
+      location,
+    });
+
+    createSendToken(newUser, 201, res);
+  } catch (err) {
+    res.status(404).json({
+      status: 'failed',
+      error: err.message,
+    });
+  }
+};
+
+// ROUTE TO ADD OUTLETS
+exports.addOutlet = async (req, res, next) => {
+  try {
+    const { name, radius, openingHours, adminPassword } = req.body;
+    const newOutlet = await Outlet.create({
+      name,
+      radius,
+      openingHours,
+      adminPassword,
       location: {
         type: 'Point',
         coordinates: [76.35985311823566, 30.354609639779458],
       },
     });
 
-    createSendToken(newUser, 201, res);
+    res.status(200).json({
+      status: 'success',
+      outlet: newOutlet,
+    });
   } catch (err) {
     res.status(404).json({
       status: 'failed',
