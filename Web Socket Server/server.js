@@ -6,6 +6,11 @@ const { initializeRoutes } = require("./routes/index");
 const  Outlet  = require('../REST Server/models/outletModel');
 const  User  = require('../REST Server/models/userModel');
 const dotenv = require('dotenv');
+const getAllOutlets = require('../REST Server/controllers/userController');
+
+for (let i=0;i<getAllOutlets.length;i++){
+  console.log(getAllOutlets[i]);
+}
 
 mongoose.set('strictQuery', true);
 let app = express();mongoose.set('strictQuery', true);
@@ -61,14 +66,16 @@ changeStream.on('change', (change) => {
 
 
 
-const id=  Outlet.findOne({},'_id', function(err, result) {
-  if (err) throw err;
-  console.log(result._id);
-  return result._id;
-});
+// const id=  Outlet.findOne({},'_id', function(err, result) {
+//   if (err) throw err;
+//   console.log(result._id);
+//   return result._id;
+// });
+const id='63faf45eff56af53379127c4';
 
-  io.on( "connection", socket => {
-    console.log( "New client connected" );
+io.on( "connection", socket => {
+  console.log( "New client connected" );
+
   
    // get the count of currently connected users
   const connectedUsers = io.sockets.sockets.size;
@@ -79,6 +86,8 @@ const id=  Outlet.findOne({},'_id', function(err, result) {
         console.error(err);
         return;
       }
+
+      console.log(record.name);
       record.headCount = io.sockets.sockets.size;
       //add person from list of people present in outlet
       let addedUser= User.findById(io.sockets.sockets.id)
@@ -106,7 +115,7 @@ const id=  Outlet.findOne({},'_id', function(err, result) {
     // update the count of connected users
     const connectedUsers = io.sockets.sockets.size;
     console.log(`Total connected users: ${connectedUsers}`);
-    
+      
       Outlet.findById(id, (err, record) => {
         if (err) {
           console.error(err);
