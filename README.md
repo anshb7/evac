@@ -20,16 +20,23 @@ The concerned authority of outlet will have to register themselves into the appl
 
 ## The User Interface
 ![](assets/images/UI.png)
+[Figma Link](https://www.figma.com/file/MAtUtfaNrO8046rKTbMuzN/Evac-UI?node-id=0%3A1&t=U4yyFGktMeP1OgVd-0)
+
+
+## Postman Documentation
+[See here](https://documenter.getpostman.com/view/21822026/2s93CPqsJH)
 
 ## Flowchart
-Here's a quick look over the flow of the application
+Here's a quick look over the flow of the application</br>
 
-Here's a peek: </br>
 ![](assets/images/FlowChart.jpg)
 
+## Working Video
+
+
 ## The team 
-[Ansh Bajaj](https://github.com/anshb7) </br>,
-[Aditya Parmar](https://github.com/Balerion123) </br>,
+[Ansh Bajaj](https://github.com/anshb7) </br>
+[Aditya Parmar](https://github.com/Balerion123) </br>
 [Garv Chandalia](https://github.com/grc-04),</br>
 [Vivaan Taneja](https://https://github.com/vivaantaneja)</br>
 [Sanya Mahajan](https://https://github.com/sanya_mahajan)
