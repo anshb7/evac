@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { User } = require('../../../REST-server/models/userModel');
+const { User } = require('../../../REST Server/models/userModel');
 const userRouter = Router();
 
 
