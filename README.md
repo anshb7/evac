@@ -39,7 +39,7 @@ Here's a quick look over the flow of the application</br>
 [Aditya Parmar](https://github.com/Balerion123) </br>
 [Garv Chandalia](https://github.com/grc-04),</br>
 [Vivaan Taneja](https://https://github.com/vivaantaneja)</br>
-[Sanya Mahajan](https://https://github.com/sanya_mahajan)
+[Sanya Mahajan](https://https://github.com/sanya-mahajan)
 
 
 ## Getting Started
